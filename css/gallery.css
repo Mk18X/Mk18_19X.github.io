@@ -1,0 +1,88 @@
+/* ============================================================
+   Kigurumi 图片集：一排六张横向堆叠
+   点击展开 → 桌面 3 列 × 2 行 / 手机 2 列 × 3 行
+   仅被 index.html 引用，配色沿用 style.css 里的主题变量。
+   ============================================================ */
+
+.stack-gallery {
+  /* ================= 可调参数 ================= */
+  --item-ratio: 3 / 4;                  /* 竖版 3:4（普通竖屏照片比例）；想横版写 4 / 3 */
+  --item-w: clamp(110px, 24vw, 300px);  /* 收起时每张照片的宽度 */
+  --peek: calc(var(--item-w) * 0.26);   /* 收起时每张露出的宽度（越大叠得越开） */
+  --gap: 14px;                          /* 展开后照片之间的间距 */
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 每个格子：占位块(.gallery-ph) 与真实图片(.stack-item) 共用尺寸 */
+.stack-item {
+  flex: none;
+  display: block;
+  position: relative;
+  width: var(--item-w);
+  aspect-ratio: var(--item-ratio);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  object-fit: cover;                    /* 真实图片自动裁切铺满，不变形 */
+  transition: margin-left var(--transition), transform var(--transition);
+}
+
+/* 占位块样式（还没放照片时显示虚框） */
+.gallery-ph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-style: dashed;
+  background: linear-gradient(135deg, var(--primary-soft), var(--surface-2));
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* 叠放层次：第 1 张在最上层，依次压下，形成“一叠照片” */
+.stack-gallery .stack-item:nth-child(1) { z-index: 6; }
+.stack-gallery .stack-item:nth-child(2) { z-index: 5; }
+.stack-gallery .stack-item:nth-child(3) { z-index: 4; }
+.stack-gallery .stack-item:nth-child(4) { z-index: 3; }
+.stack-gallery .stack-item:nth-child(5) { z-index: 2; }
+.stack-gallery .stack-item:nth-child(6) { z-index: 1; }
+/* 若以后增加第 7 张及更多，给对应格子更小的 z-index（如 0、-1）即可 */
+
+/* 收起状态：第一张完整显示，后面几张向左叠压，各露出右侧一条 */
+.stack-gallery:not(.expanded) .stack-item + .stack-item {
+  margin-left: calc(var(--peek) - var(--item-w));
+}
+
+/* 展开状态：桌面/平板 = 一行三张、共两行六张 */
+.stack-gallery.expanded {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gap);
+  /* 网格最宽只到“三张照片 + 两个间距”，保证展开后每张和收起时一样大 */
+  max-width: calc(3 * var(--item-w) + 2 * var(--gap));
+  margin: 0 auto;
+}
+
+.stack-gallery.expanded .stack-item {
+  width: auto;
+  margin-left: 0;
+}
+
+/* 手机（≤480px）：改成一行两张、共三行；照片铺满屏幕，所以比收起时更大更好点 */
+@media (max-width: 480px) {
+  .stack-gallery.expanded {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: none;      /* 取消上面的宽度上限，让两张占满整行 */
+  }
+}
+
+/* 悬停时轻微抬起，提示可交互 */
+.stack-gallery .stack-item:hover {
+  transform: translateY(-6px);
+}

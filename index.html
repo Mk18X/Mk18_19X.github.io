@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mk18_19X · 个人主页</title>
+  <meta name="description" content="Mk18_19X 的个人主页：关于我、Kigurumi 图片集，以及游戏、音乐、摄影等兴趣。" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/gallery.css" />
+</head>
+<body>
+
+  <!-- ============ 顶部导航 ============ -->
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html"><span class="dot"></span>Mk18_19X</a>
+      <nav class="nav" id="site-nav">
+        <a href="index.html" class="active">主页</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn theme-toggle" type="button" aria-label="切换主题">🌙</button>
+        <button class="icon-btn nav-toggle" type="button" aria-label="菜单" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============ 我是 Mk18_19X ＋ 关于我（合并） ============ -->
+    <section class="hero" id="about">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">你好，欢迎关注</span>
+          <h1>我是 <span style="color: var(--primary);">Mk18_19X</span></h1>
+
+          <!--
+            ✍️ 这里就是“关于我”的内容，直接接在“我是 Mk18_19X”下面。
+            把下面这段话替换成你自己的介绍即可（想写多长都行）。
+          -->
+          <p class="lead">
+            Hi 全平台同ID(也许有些不是？)
+          </p>
+        </div>
+        <div class="avatar-wrap">
+          <!-- 想换头像：把 src 改成你的图片文件名即可（放同一目录或 assets/ 都行） -->
+          <img class="avatar" src="头像.png" alt="Mk18_19X 的头像" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 我的个人 Kigurumi 图片集（收起一排六张，展开桌面 3×2 / 手机 2×3） ============ -->
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section-head" style="text-align: center;">
+          <span class="eyebrow">Kigurumi</span>
+          <h2></h2>
+        </div>
+
+        <!--
+          ==================== 图片集：换照片看这里 ====================
+          六张照片横着叠成一排，点下面的按钮展开全部六张。
+
+          照片放在 assets/ 文件夹里，按顺序命名 kigu-1.jpg ~ kigu-6.jpg
+          （第 1 张在最上层，往后依次往下压）。换照片时直接替换同名文件即可，
+          不用改这里的代码；想换成别的文件名，改下面 src 里的路径就行。
+
+          原图不是竖版 3:4 也没关系，会自动居中裁切填满。想改成横版展示，
+          把 css/gallery.css 里的 --item-ratio 改成 4 / 3。
+        -->
+        <div class="stack-gallery" id="stack-gallery">
+          <img class="stack-item" src="assets/kigu-1.jpg" alt="Kigurumi 照片 1" loading="lazy" />
+          <img class="stack-item" src="assets/kigu-2.jpg" alt="Kigurumi 照片 2" loading="lazy" />
+          <img class="stack-item" src="assets/kigu-3.jpg" alt="Kigurumi 照片 3" loading="lazy" />
+          <img class="stack-item" src="assets/kigu-4.jpg" alt="Kigurumi 照片 4" loading="lazy" />
+          <img class="stack-item" src="assets/kigu-5.jpg" alt="Kigurumi 照片 5" loading="lazy" />
+          <img class="stack-item" src="assets/kigu-6.jpg" alt="Kigurumi 照片 6" loading="lazy" />
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+          <button class="btn btn-primary" id="gallery-toggle" type="button" aria-expanded="false">
+            查看全部照片 ↓
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 工作之外（游戏 / 音乐 / 摄影） ============ -->
+    <section class="section" id="interests" style="background: var(--surface-2);">
+      <div class="container">
+        <div class="section-head" style="text-align: center;">
+          <span class="eyebrow">兴趣</span>
+          <h2></h2>
+        </div>
+
+        <div class="grid grid-3">
+          <article class="card">
+            <div class="icon">🎮</div>
+            <h3>游戏</h3>
+            <!-- ✍️ 替换这行文字：比如常玩的游戏、喜欢的类型、常用平台… -->
+            <p>WarThunder重度依赖者 彩虹六号玩家 VRChat偶尔上线</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🎧</div>
+            <h3>音乐</h3>
+            <!-- ✍️ 替换这行文字：比如喜欢的歌手 / 曲风、常用听歌平台… -->
+            <p>ACG我喜欢！摇滚也不错 =）</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">📷</div>
+            <h3>摄影</h3>
+            <!-- ✍️ 替换这行文字：比如常用的相机 / 镜头、喜欢的拍摄题材… -->
+            <p>A7C2;A9;SIGMA 2870;SIGMA 140;VILTROX 85EVO</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ 页脚 ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="socials">
+        <a href="#" target="_blank" rel="noopener"></a>
+        <a href="#" target="_blank" rel="noopener"></a>
+        <a href="mailto:you@example.com"></a>
+      </div>
+      <div>© <span data-year>2026</span> @Mk18_19X 使用 DeepSeek 辅助搭建</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
